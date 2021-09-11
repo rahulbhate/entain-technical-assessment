@@ -3,7 +3,7 @@ import React from 'react'
 const DropDown = ({ data, category, handleChange }) => {
   return (
     <>
-      <label for="raceCategory">Choose Category:</label>
+      <label htmlFor="raceCategory">Choose Category:</label>
       <select
         name="raceCategory"
         id="raceCategory"
@@ -15,7 +15,11 @@ const DropDown = ({ data, category, handleChange }) => {
           <option value="NO">No Categories Found</option>
         ) : (
           data.map((item, index) => {
-            return <option value={item.race_name}>{item.race_name}</option>
+            return (
+              <option value={item.race_name} key={item.race_name}>
+                {item.race_name}
+              </option>
+            )
           })
         )}
       </select>

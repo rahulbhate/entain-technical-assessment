@@ -1,13 +1,11 @@
 import {
   faArrowCircleDown,
   faArrowCircleUp,
-  faQuestion,
-  faStar,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
-import { Col, OverlayTrigger, Table, Tooltip } from 'react-bootstrap'
+import { Col, Table } from 'react-bootstrap'
 import 'assets/css/style.css'
 
 {
@@ -106,7 +104,7 @@ const DataTable = ({ data, categories }) => {
               ) : (
                 data.map((item, index) => {
                   return (
-                    <tr>
+                    <tr key={item.race_id}>
                       <td>{item.race_number}</td>
                       <td>
                         {item.race_name} <br />

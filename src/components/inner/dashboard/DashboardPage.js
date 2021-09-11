@@ -3,8 +3,7 @@ import Data from 'components/common/Data.json'
 import { MetaDecorator } from 'components/common/MetaDecorator'
 import NavBar from 'components/common/NavBar'
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import DataTable from './DataTable'
 import DropDown from 'components/common/DropDown'
@@ -13,7 +12,7 @@ import LoadingIndicator from 'components/common/LoadingIndicator'
 
 export const DashboardPage = ({ loadData, data, ...props }) => {
   const [category, setCategory] = useState('')
-  const [count, setCount] = useState(10)
+
   // useEffect(() => {
   //   const timer = setInterval(
   //     () => console.log('API Called to get Data from server', getData()),
