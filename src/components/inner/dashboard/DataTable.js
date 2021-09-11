@@ -75,7 +75,7 @@ const DataTable = ({ data, categories }) => {
                     />
                   )}
                 </th>
-                <th style={{ width: '100px' }}>Rating Id </th>
+                <th style={{ width: '100px' }}>Race Id </th>
                 <th style={{ width: '100px' }}>Meeting Name </th>
                 <th style={{ width: '100px' }}>
                   Race Time{' '}
