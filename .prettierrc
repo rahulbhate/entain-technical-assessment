@@ -1,0 +1,6 @@
+{
+  "singleQuote": true,
+  "embeddedLanguageFormatting": "auto",
+  "tabWidth": 2,
+  "semi": false
+}
