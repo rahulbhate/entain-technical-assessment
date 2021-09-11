@@ -15,33 +15,26 @@ import 'assets/css/style.css'
     This component is used for showing Shoppers List. 
   */
 }
-const DataTable = ({ data, setData, categories }) => {
+const DataTable = ({ data, categories }) => {
   const currentTime = new Date().getTime() + 1 / 1000
-
-  //   const raceData = Object.values(data.race_summaries).slice(0, 5)
-  //   raceData.map((e) => console.log('DDDD', e.race_name))
   const [toggle, setToggle] = useState(true)
   const [category, setCategory] = useState('')
   useEffect(() => {
     console.log('called')
   }, [category])
   const handleChange = (e) => {
-    data.sort((cust1, cust2) => {
+    data.sort((a, b) => {
       if (e === 'ASC') {
         setToggle(!toggle)
         return (
-          cust1.meeting_name.localeCompare(cust2.meeting_name) ||
-          cust1.advertised_start.seconds.localeCompare(
-            cust2.advertised_start.seconds
-          )
+          a.meeting_name.localeCompare(b.meeting_name) ||
+          a.advertised_start.seconds.localeCompare(b.advertised_start.seconds)
         )
       } else if (e === 'DESC') {
         setToggle(!toggle)
         return (
-          cust2.meeting_name.localeCompare(cust1.meeting_name) ||
-          cust2.advertised_start.seconds.localeCompare(
-            cust1.advertised_start.seconds
-          )
+          b.meeting_name.localeCompare(a.meeting_name) ||
+          b.advertised_start.seconds.localeCompare(a.advertised_start.seconds)
         )
       }
     })

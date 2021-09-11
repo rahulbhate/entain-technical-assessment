@@ -15,15 +15,14 @@ export const DashboardPage = ({ loadData, ...props }) => {
   const [data, setData] = useState([])
   const [category, setCategory] = useState('')
   const [count, setCount] = useState(10)
-  // useEffect(() => {
-  //   const timer = setInterval(
-  //     () => console.log('Hello, World!', getData()),
-  //     2000
-  //   )
-  // }, [])
+  useEffect(() => {
+    const timer = setInterval(
+      () => console.log('API Called to get Data from server', getData()),
+      30000
+    )
+  }, [])
   useEffect(() => {
     console.log('USE EFFECT CALLED')
-
     getData()
   }, [])
   async function getData() {

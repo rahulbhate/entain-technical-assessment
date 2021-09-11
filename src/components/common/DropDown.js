@@ -1,8 +1,6 @@
 import React from 'react'
 
-const DropDown = ({ data, category, setCategory, setData, handleChange }) => {
-  //   const raceData = Object.values(data.race_summaries).slice(0, 5)
-  //   console.log(raceData)
+const DropDown = ({ data, category, handleChange }) => {
   return (
     <>
       <label for="raceCategory">Choose Category:</label>
