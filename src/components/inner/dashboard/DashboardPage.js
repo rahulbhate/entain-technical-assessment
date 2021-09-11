@@ -11,34 +11,21 @@ import DropDown from 'components/common/DropDown'
 import { loadData } from 'redux/thunks/Thunks'
 import LoadingIndicator from 'components/common/LoadingIndicator'
 
-export const DashboardPage = ({ loadData, ...props }) => {
-  const [data, setData] = useState([])
+export const DashboardPage = ({ loadData, data, ...props }) => {
   const [category, setCategory] = useState('')
   const [count, setCount] = useState(10)
-  useEffect(() => {
-    const timer = setInterval(
-      () => console.log('API Called to get Data from server', getData()),
-      30000
-    )
-  }, [])
+  // useEffect(() => {
+  //   const timer = setInterval(
+  //     () => console.log('API Called to get Data from server', getData()),
+  //     30000
+  //   )
+  // }, [])
   useEffect(() => {
     console.log('USE EFFECT CALLED')
     getData()
   }, [])
   async function getData() {
     await loadData()
-    await axios
-      .get(
-        `https://api.neds.com.au/rest/v1/racing/?method=nextraces&count=${count}`
-      )
-      .then((res) => {
-        setData(res.data)
-        localStorage.setItem(
-          'DATA',
-          JSON.stringify(Object.values(data.data.race_summaries).slice(0, 5))
-        )
-      })
-      .catch((err) => console.log('error', err))
   }
   const handleChange = (e) => {
     const dd = Object.values(data.data.race_summaries)
