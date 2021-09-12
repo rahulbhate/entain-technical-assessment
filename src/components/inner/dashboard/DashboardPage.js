@@ -12,13 +12,17 @@ import LoadingIndicator from 'components/common/LoadingIndicator'
 
 export const DashboardPage = ({ loadData, data, ...props }) => {
   const [category, setCategory] = useState('')
+  const [date, setDate] = useState(new Date())
+  useEffect(() => {
+    var timerID = setInterval(() => tick(), 1000)
+    return function cleanup() {
+      clearInterval(timerID)
+    }
+  }, [date])
 
-  // useEffect(() => {
-  //   const timer = setInterval(
-  //     () => console.log('API Called to get Data from server', getData()),
-  //     30000
-  //   )
-  // }, [])
+  function tick() {
+    setDate(new Date())
+  }
   useEffect(() => {
     console.log('USE EFFECT CALLED')
     getData()
@@ -59,6 +63,7 @@ export const DashboardPage = ({ loadData, data, ...props }) => {
             </Col>
             <Col lg={12} md={12} sm={12} xs={12}>
               <DataTable
+                date={date}
                 data={Object.values(data.data.race_summaries)
                   .slice(0, 5)
                   .filter((rc) =>

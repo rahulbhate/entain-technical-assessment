@@ -13,7 +13,7 @@ import 'assets/css/style.css'
     This component is used for showing Shoppers List. 
   */
 }
-const DataTable = ({ data, categories }) => {
+const DataTable = ({ date, data, categories }) => {
   const currentTime = new Date().getTime() + 1 / 1000
   const [toggle, setToggle] = useState(true)
   const [category, setCategory] = useState('')
@@ -112,11 +112,16 @@ const DataTable = ({ data, categories }) => {
                       <td>{item.race_id}</td>
                       <td>{item.meeting_name}</td>
                       <td>
-                        {currentTime > item.advertised_start.seconds
-                          ? moment(item.advertised_start.seconds).format('LLLL')
-                          : moment(item.advertised_start.seconds).format(
-                              'LLLL'
-                            )}
+                        {moment(date).format(' h:mm:ss A')}
+                        {''} ||
+                        {parseInt(moment(date).format(' h:mm:ss A')) >
+                        parseInt(
+                          moment(item.advertised_start.seconds).format('LTS')
+                        )
+                          ? `Start Time: ${moment(
+                              item.advertised_start.seconds
+                            ).format('LTS')}`
+                          : moment(item.advertised_start.seconds).format('LTS')}
                       </td>
                     </tr>
                   )
