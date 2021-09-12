@@ -15,6 +15,7 @@ import 'assets/css/style.css'
 }
 const DataTable = ({ date, data, categories }) => {
   const currentTime = new Date().getTime() + 1 / 1000
+  const dd = new Date(0)
   const [toggle, setToggle] = useState(true)
   const [category, setCategory] = useState('')
   useEffect(() => {
@@ -112,16 +113,17 @@ const DataTable = ({ date, data, categories }) => {
                       <td>{item.race_id}</td>
                       <td>{item.meeting_name}</td>
                       <td>
-                        {moment(date).format(' h:mm:ss A')}
-                        {''} ||
-                        {parseInt(moment(date).format(' h:mm:ss A')) >
-                        parseInt(
-                          moment(item.advertised_start.seconds).format('LTS')
-                        )
-                          ? `Start Time: ${moment(
-                              item.advertised_start.seconds
-                            ).format('LTS')}`
-                          : moment(item.advertised_start.seconds).format('LTS')}
+                        {`Race Start Time:${moment(
+                          item.advertised_start.seconds * 1000
+                        ).format('LTS')}`}
+                        <br />
+                        {`Current Time: ${moment(date).format(
+                          ' h:mm:ss A'
+                        )}`}{' '}
+                        <br />
+                        {moment(item.advertised_start.seconds * 1000).from(
+                          moment(date)
+                        )}
                       </td>
                     </tr>
                   )
