@@ -65,6 +65,7 @@ export const DashboardPage = ({ loadData, data, ...props }) => {
               <DataTable
                 date={date}
                 setDate={setDate}
+                loadData={loadData}
                 data={Object.values(data.data.race_summaries)
                   .slice(0, 5)
                   .filter((rc) =>

@@ -5,6 +5,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
+import { connect } from 'react-redux'
 import { Col, Table } from 'react-bootstrap'
 import 'assets/css/style.css'
 
@@ -13,14 +14,11 @@ import 'assets/css/style.css'
     This component is used for showing Shoppers List. 
   */
 }
-const DataTable = ({ date, data, categories }) => {
-  const currentTime = new Date().getTime() + 1 / 1000
-  const dd = new Date(0)
+const DataTable = ({ loadData, date, data, categories }) => {
   const [toggle, setToggle] = useState(true)
-  const [category, setCategory] = useState('')
   useEffect(() => {
     console.log('called')
-  }, [category])
+  }, [])
   const handleChange = (e) => {
     data.sort((a, b) => {
       if (e === 'ASC') {
@@ -38,14 +36,7 @@ const DataTable = ({ date, data, categories }) => {
       }
     })
   }
-  const handleChange2 = (e) => {
-    setCategory(e.target.value)
 
-    const dd = data.filter((rc) => {
-      return rc.race_name.toLowerCase().includes(e.target.value.toLowerCase())
-    })
-    console.log(dd)
-  }
   return (
     <>
       <div className="dashboard-card-big">
@@ -121,9 +112,16 @@ const DataTable = ({ date, data, categories }) => {
                           ' h:mm:ss A'
                         )}`}{' '}
                         <br />
-                        {moment(item.advertised_start.seconds * 1000).from(
+                        {`${moment(item.advertised_start.seconds * 1000).from(
                           moment(date)
-                        )}
+                        )}`}{' '}
+                        <br />
+                        {moment(item.advertised_start.seconds * 1000).diff(
+                          moment(date),
+                          'minutes'
+                        ) < 1
+                          ? 'Race Started'
+                          : 'Race Not Started'}
                       </td>
                     </tr>
                   )
@@ -136,4 +134,5 @@ const DataTable = ({ date, data, categories }) => {
     </>
   )
 }
+
 export default DataTable
