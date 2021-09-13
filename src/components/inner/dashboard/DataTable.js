@@ -96,6 +96,13 @@ const DataTable = ({ loadData, date, data, categories }) => {
                         moment(b.advertised_start.seconds * 1000).format('LTS')
                       )
                   )
+                  .filter(
+                    (item) =>
+                      moment(item.advertised_start.seconds * 1000).diff(
+                        moment(date),
+                        'minutes'
+                      ) > 1
+                  )
                   .map((item, index) => {
                     return (
                       <tr key={item.race_id}>
