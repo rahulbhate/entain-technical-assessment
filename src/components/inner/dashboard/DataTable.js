@@ -23,16 +23,10 @@ const DataTable = ({ loadData, date, data, categories }) => {
     data.sort((a, b) => {
       if (e === 'ASC') {
         setToggle(!toggle)
-        return (
-          a.meeting_name.localeCompare(b.meeting_name) ||
-          a.advertised_start.seconds.localeCompare(b.advertised_start.seconds)
-        )
+        return a.meeting_name.localeCompare(b.meeting_name)
       } else if (e === 'DESC') {
         setToggle(!toggle)
-        return (
-          b.meeting_name.localeCompare(a.meeting_name) ||
-          b.advertised_start.seconds.localeCompare(a.advertised_start.seconds)
-        )
+        return b.meeting_name.localeCompare(a.meeting_name)
       }
     })
   }
