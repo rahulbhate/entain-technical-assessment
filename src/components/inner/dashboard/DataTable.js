@@ -88,38 +88,46 @@ const DataTable = ({ loadData, date, data, categories }) => {
                   </td>
                 </tr>
               ) : (
-                data.map((item, index) => {
-                  return (
-                    <tr key={item.race_id}>
-                      <td>{item.race_number}</td>
-                      <td>
-                        {item.race_name} <br />
-                      </td>
-                      <td>{item.race_id}</td>
-                      <td>{item.meeting_name}</td>
-                      <td>
-                        {`Race Start Time:${moment(
-                          item.advertised_start.seconds * 1000
-                        ).format('LTS')}`}
-                        <br />
-                        {`Current Time: ${moment(date).format(
-                          ' h:mm:ss A'
-                        )}`}{' '}
-                        <br />
-                        {`${moment(item.advertised_start.seconds * 1000).from(
-                          moment(date)
-                        )}`}{' '}
-                        <br />
-                        {moment(item.advertised_start.seconds * 1000).diff(
-                          moment(date),
-                          'minutes'
-                        ) < 1
-                          ? 'Race Started'
-                          : 'Race Not Started'}
-                      </td>
-                    </tr>
+                data
+                  .sort((a, b) =>
+                    moment(a.advertised_start.seconds * 1000)
+                      .format('LTS')
+                      .localeCompare(
+                        moment(b.advertised_start.seconds * 1000).format('LTS')
+                      )
                   )
-                })
+                  .map((item, index) => {
+                    return (
+                      <tr key={item.race_id}>
+                        <td>{item.race_number}</td>
+                        <td>
+                          {item.race_name} <br />
+                        </td>
+                        <td>{item.race_id}</td>
+                        <td>{item.meeting_name}</td>
+                        <td>
+                          {`Race Start Time:${moment(
+                            item.advertised_start.seconds * 1000
+                          ).format('LTS')}`}
+                          <br />
+                          {`Current Time: ${moment(date).format(
+                            ' h:mm:ss A'
+                          )}`}{' '}
+                          <br />
+                          {`${moment(item.advertised_start.seconds * 1000).from(
+                            moment(date)
+                          )}`}{' '}
+                          <br />
+                          {moment(item.advertised_start.seconds * 1000).diff(
+                            moment(date),
+                            'minutes'
+                          ) < 1
+                            ? 'Race Started'
+                            : 'Race Not Started'}
+                        </td>
+                      </tr>
+                    )
+                  })
               )}
             </tbody>
           </Table>
